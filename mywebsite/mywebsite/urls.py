@@ -23,9 +23,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('tasks/', views.task_list, name='task_list'),
-    path('exercises/', views.exercise_list, name='exercise_list'),
+    path('exercises/', views.task_list, name='exercise_list'),
     path('stretching/', views.stretching_list, name='stretching_list'),
     path('cardio/', views.cardio_list, name='cardio_list'),
-    path('exercises/add/', views.add_exercise_task, name='add_exercise_task'),
-    path('exercises/complete/<int:task_id>/', views.mark_task_complete, name='mark_task_complete') # Add this line
+    path('<str:category>/', views.category_task_list, name='category_task_list'),
+    path('<str:category>/add/', views.add_task, name='add_task'),
+    path('<str:category>/complete/<int:task_id>/', views.mark_task_complete, name='mark_task_complete')
 ]

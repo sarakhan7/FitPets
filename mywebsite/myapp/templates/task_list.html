@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Cardio List</title>
+    <title>{{ category|title }} To-Do List</title>
     <style>
-        /* Add CSS for the round button */
         .complete-btn {
             display: inline-block;
             padding: 5px 10px;
@@ -22,21 +21,26 @@
     </style>
 </head>
 <body>
-    <h1>Cardio To-Do List</h1>
+    <h1>{{ category|title }} To-Do List</h1>
     <ul>
         {% for task in tasks %}
             <li>
                 {{ task.title }} - 
-                <a href="{% url 'mark_task_complete' task.id %}" class="complete-btn">✔</a>
+                <a href="{% url 'mark_task_complete' category=task.category task_id=task.id %}" class="complete-btn">✔</a>
             </li>
         {% empty %}
-            <li>No cardio tasks found.</li>
+            <li>No {{ category }} tasks found.</li>
         {% endfor %}
     </ul>
 
     <hr>
-    <h2>Add New Cardio Task</h2>
-    <form method="post" action="{% url 'add_exercise_task' %}">
+    <h2>Add New {{ category|title }} Task</h2>
+
+    {% if category %}
+        <form method="post" action="{% url 'add_task' category=category %}">
+    {% else %}
+        <p>No category selected.</p>
+    {% endif %}
         {% csrf_token %}
         <input type="text" name="title" placeholder="Enter task title" required>
         <button type="submit">Add Task</button>

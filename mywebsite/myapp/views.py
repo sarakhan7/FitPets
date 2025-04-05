@@ -11,31 +11,46 @@ def home(request):
     return render(request, 'myapp/home.html')  # Make sure to create this template
 
 def task_list(request):
-    tasks = ToDoItem.objects.all()  # Get all tasks from the database
-    return render(request, 'your_template.html', {'tasks': tasks})
+    category = request.GET.get('category', '')  # Check if category is passed via GET params
+    tasks = ToDoItem.objects.all()  # Get all tasks by default
 
-def exercise_list(request):
-    exercises = ToDoItem.objects.filter(category=ToDoItem.EXERCISE, completed=False)  # Exclude completed tasks
-    return render(request, 'exercise_list.html', {'tasks': exercises})
+    # If a category is provided, filter tasks based on the category
+    if category:
+        tasks = tasks.filter(category=category)
+    return render(request, 'task_list.html', {'tasks': tasks, 'category': category or 'ALL'})
 
-def add_exercise_task(request):
+# def exercise_list(request):
+#     exercises = ToDoItem.objects.filter(category=ToDoItem.EXERCISE, completed=False)  # Exclude completed tasks
+#     return render(request, 'exercise_list.html', {'tasks': exercises})
+
+# def add_exercise_task(request):
+#     if request.method == 'POST':
+#         title = request.POST.get('title')  # Get the task title from the form
+#         if title:
+#             ToDoItem.objects.create(title=title, category=ToDoItem.EXERCISE)  # Create a new task
+#         return redirect('exercise_list')  # Redirect back to the exercise list
+
+def category_task_list(request, category):
+    tasks = ToDoItem.objects.filter(category=category, completed=False)  # Filter by category and exclude completed
+    return render(request, 'task_list.html', {'tasks': tasks, 'category': category})
+
+def add_task(request, category):
     if request.method == 'POST':
         title = request.POST.get('title')  # Get the task title from the form
         if title:
-            ToDoItem.objects.create(title=title, category=ToDoItem.EXERCISE)  # Create a new task
-        return redirect('exercise_list')  # Redirect back to the exercise list
+            ToDoItem.objects.create(title=title, category=category)  # Create a new task for the category
+        return redirect('category_task_list', category=category)  # Redirect back to the category list
 
-
-def mark_task_complete(request, task_id):
-    task = get_object_or_404(ToDoItem, id=task_id)
+def mark_task_complete(request, category, task_id):
+    task = get_object_or_404(ToDoItem, id=task_id, category=category)
     task.completed = True
     task.save()
-    return redirect('exercise_list')  # Redirect back to the exercise list
+    return redirect('category_task_list', category=category)  # Redirect back to the category list
 
 def stretching_list(request):
     stretching = ToDoItem.objects.filter(category=ToDoItem.STRETCHING)
-    return render(request, 'stretching_list.html', {'tasks': stretching})
+    return render(request, 'task_list.html', {'tasks': stretching, 'category': ToDoItem.STRETCHING})
 
 def cardio_list(request):
     cardio = ToDoItem.objects.filter(category=ToDoItem.CARDIO)
-    return render(request, 'cardio_list.html', {'tasks': cardio})
+    return render(request, 'task_list.html', {'tasks': cardio, 'category': ToDoItem.CARDIO})
