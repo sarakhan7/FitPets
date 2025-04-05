@@ -1,7 +1,7 @@
 /* Apply the pixelated font */
 body {
     font-family: 'Press Start 2P', cursive;
-    background-color: #222222;
+    background-color: #ffb6c1; /* Light pink background */
     color: white;
     display: flex;
     justify-content: center;
@@ -13,81 +13,103 @@ body {
 /* Container for login and sign up forms */
 .container {
     display: flex;
-    justify-content: space-around;
+    justify-content: center; /* Center forms horizontally */
+    align-items: center; /* Center forms vertically */
     width: 100%;
-    max-width: 1000px;
-    gap: 50px;
+    max-width: 700px; /* Reasonable width for content */
+    padding: 20px;
 }
 
 /* Form container styles */
 .form-container {
-    background-color: #333333;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: #ffffff; /* White background */
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     text-align: center;
-    width: 300px;
+    width: 100%; /* Full width of the container */
+    max-width: 400px; /* Limit max width */
+    border: 5px solid #ff69b4; /* Pink border */
 }
 
 h1.title {
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin-bottom: 20px;
-    color: #ffcc00;
+    color: #ff69b4; /* Pink color */
+    text-shadow: 2px 2px 5px #ffcc00; /* Glowing effect */
 }
 
 h2.form-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
     margin-bottom: 20px;
-    color: #ffcc00;
+    color: #ff69b4; /* Pink color */
 }
 
 .input-field {
-    width: 80%;
-    padding: 12px;
-    margin: 8px 0;
-    border-radius: 5px;
-    border: 1px solid #555555;
-    background-color: #444444;
-    color: white;
-    font-size: 1rem;
+    width: 90%;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 10px;
+    border: 2px solid #ff69b4; /* Pink border */
+    background-color: #ffe4e1; /* Light pink background */
+    color: #222222; /* Dark text */
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.input-field:focus {
+    background-color: #ffcccb; /* Slightly darker pink when focused */
+    transform: scale(1.02); /* Slight scale effect */
+    outline: none;
 }
 
 .submit-btn {
-    width: 80%;
-    padding: 12px;
-    margin: 10px 0;
-    background-color: #ffcc00;
+    width: 90%;
+    padding: 15px;
+    margin: 15px 0;
+    background-color: #ff69b4; /* Pink button */
     border: none;
-    border-radius: 5px;
-    color: #222222;
-    font-size: 1.2rem;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.4rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .submit-btn:hover {
-    background-color: #ffaa00;
+    background-color: #ff1493; /* Darker pink on hover */
+    transform: scale(1.05);
+}
+
+.submit-btn:active {
+    background-color: #ff77ff; /* Lighter pink on click */
 }
 
 /* Switch form link styling */
 .switch-form {
-    margin-top: 10px;
-    font-size: 1rem;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center; /* Centers the links horizontally */
+    align-items: center; /* Centers the links vertically */
+    gap: 10px; /* Spacing between the links */
 }
 
 .switch-form a {
-    color: #ffcc00;
+    color: #ff69b4; /* Pink color */
     text-decoration: none;
+    font-weight: bold;
 }
 
 .switch-form a:hover {
     text-decoration: underline;
 }
 
+/* Hide the Sign Up form by default */
 .signup-form {
-    display: none; /* Hide the Sign Up form by default */
+    display: none;
 }
 
 .signup-form.active {
-    display: block; /* Display Sign Up when it's active */
+    display: block;
 }
