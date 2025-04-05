@@ -2,9 +2,9 @@ from django.db import models
 
 # Create your models here.
 class ToDoItem(models.Model):
-    EXERCISE = 'EX'
-    STRETCHING = 'ST'
-    CARDIO = 'CA'
+    EXERCISE = 'Exercise'
+    STRETCHING = 'Stretching'
+    CARDIO = 'Cardio'
 
     CATEGORY_CHOICES = [
         (EXERCISE, 'Exercise'),
@@ -14,7 +14,7 @@ class ToDoItem(models.Model):
 
     title = models.CharField(max_length=200)
     description = models.TextField()
-    category = models.CharField(max_length=2, choices=CATEGORY_CHOICES)
+    category = models.CharField(max_length=11, choices=CATEGORY_CHOICES)
     completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
