@@ -13,8 +13,8 @@ def home(request):
 def login(request):
     return render(request, 'myapp/login.html')
 
-def register(request):
-    return render(request, 'myapp/register.html')
+def signup(request):
+    return render(request, 'myapp/signup.html')
 
 def task_list(request):
     category = request.GET.get('category', '')  # Check if category is passed via GET params
