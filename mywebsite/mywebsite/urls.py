@@ -22,7 +22,10 @@ from myapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
+    path('tasks/', views.task_list, name='task_list'),
     path('exercises/', views.exercise_list, name='exercise_list'),
     path('stretching/', views.stretching_list, name='stretching_list'),
-    path('cardio/', views.cardio_list, name='cardio_list')
+    path('cardio/', views.cardio_list, name='cardio_list'),
+    path('exercises/add/', views.add_exercise_task, name='add_exercise_task'),
+    path('exercises/complete/<int:task_id>/', views.mark_task_complete, name='mark_task_complete') # Add this line
 ]

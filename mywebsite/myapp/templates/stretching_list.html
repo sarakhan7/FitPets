@@ -11,6 +11,9 @@
                 {{ task.title }} - {% if task.completed %} Completed {% else %} Not Completed {% endif %}
             </li>
         {% endfor %}
+        {% empty %}
+            <li>No stretching tasks found.</li>
+        {% endfor %}
     </ul>
 </body>
 </html>
