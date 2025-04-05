@@ -8,7 +8,12 @@ from django.shortcuts import get_object_or_404
 
 # Create your views here.
 def home(request):
-    return render(request, 'myapp/home.html')  # Make sure to create this template
+    categories = ['exercise', 'cardio', 'stretching']  # Define the categories
+    tasks_by_category = {
+        category: ToDoItem.objects.filter(category=category, completed=False)
+        for category in categories
+    }
+    return render(request, 'home.html', {'tasks_by_category': tasks_by_category})
 
 def login(request):
     return render(request, 'myapp/login.html')
@@ -45,13 +50,13 @@ def add_task(request, category):
         title = request.POST.get('title')  # Get the task title from the form
         if title:
             ToDoItem.objects.create(title=title, category=category)  # Create a new task for the category
-        return redirect('category_task_list', category=category)  # Redirect back to the category list
+        return redirect('home')  # Redirect back to the home page
 
 def mark_task_complete(request, category, task_id):
     task = get_object_or_404(ToDoItem, id=task_id, category=category)
     task.completed = True
     task.save()
-    return redirect('category_task_list', category=category)  # Redirect back to the category list
+    return redirect('home')  # Redirect back to the category list
 
 def stretching_list(request):
     stretching = ToDoItem.objects.filter(category=ToDoItem.STRETCHING)
