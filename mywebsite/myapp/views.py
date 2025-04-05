@@ -13,6 +13,9 @@ def home(request):
 def login(request):
     return render(request, 'myapp/login.html')
 
+def register(request):
+    return render(request, 'myapp/register.html')
+
 def task_list(request):
     tasks = ToDoItem.objects.all()  # Get all tasks from the database
     return render(request, 'your_template.html', {'tasks': tasks})
