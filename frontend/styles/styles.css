@@ -1,0 +1,93 @@
+/* Apply the pixelated font */
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #222222;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container for login and sign up forms */
+.container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 1000px;
+    gap: 50px;
+}
+
+/* Form container styles */
+.form-container {
+    background-color: #333333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 300px;
+}
+
+h1.title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #f8aaf9;
+}
+
+h2.form-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #f8aaf9;
+}
+
+.input-field {
+    width: 80%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 5px;
+    border: 1px solid #555555;
+    background-color: #444444;
+    color: white;
+    font-size: 1rem;
+}
+
+.submit-btn {
+    width: 80%;
+    padding: 12px;
+    margin: 10px 0;
+    background-color: #f8aaf9;
+    border: none;
+    border-radius: 5px;
+    color: #222222;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #f8aaf9;
+}
+
+/* Switch form link styling */
+.switch-form {
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+.switch-form a {
+    color: #f8aaf9;
+    text-decoration: none;
+}
+
+.switch-form a:hover {
+    text-decoration: underline;
+}
+
+.signup-form {
+    display: none; /* Hide the Sign Up form by default */
+}
+
+.signup-form.active {
+    display: block; /* Display Sign Up when it's active */
+}
