@@ -10,13 +10,13 @@ body {
     margin: 0;
 }
 
-/* Container for login and sign up forms */
+/* Container for the content */
 .container {
     display: flex;
-    justify-content: center; /* Center forms horizontally */
-    align-items: center; /* Center forms vertically */
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    max-width: 700px; /* Reasonable width for content */
+    max-width: 700px; /* More spacious width */
     padding: 20px;
 }
 
@@ -27,11 +27,15 @@ body {
     border-radius: 15px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     text-align: center;
-    width: 100%; /* Full width of the container */
-    max-width: 400px; /* Limit max width */
+    width: 350px;
     border: 5px solid #ff69b4; /* Pink border */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
+/* Title */
 h1.title {
     font-size: 3.5rem;
     margin-bottom: 20px;
@@ -39,77 +43,43 @@ h1.title {
     text-shadow: 2px 2px 5px #ffcc00; /* Glowing effect */
 }
 
-h2.form-title {
-    font-size: 2.2rem;
-    margin-bottom: 20px;
-    color: #ff69b4; /* Pink color */
-}
-
-.input-field {
-    width: 90%;
-    padding: 15px;
-    margin: 15px 0;
-    border-radius: 10px;
-    border: 2px solid #ff69b4; /* Pink border */
-    background-color: #ffe4e1; /* Light pink background */
-    color: #222222; /* Dark text */
-    font-size: 1.2rem;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.input-field:focus {
-    background-color: #ffcccb; /* Slightly darker pink when focused */
-    transform: scale(1.02); /* Slight scale effect */
-    outline: none;
-}
-
-.submit-btn {
-    width: 90%;
-    padding: 15px;
-    margin: 15px 0;
-    background-color: #ff69b4; /* Pink button */
-    border: none;
-    border-radius: 10px;
-    color: white;
-    font-size: 1.4rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.submit-btn:hover {
-    background-color: #ff1493; /* Darker pink on hover */
-    transform: scale(1.05);
-}
-
-.submit-btn:active {
-    background-color: #ff77ff; /* Lighter pink on click */
-}
-
-/* Switch form link styling */
-.switch-form {
-    margin-top: 20px;
-    font-size: 1.2rem;
+/* Button container styles */
+.button-container {
     display: flex;
-    justify-content: center; /* Centers the links horizontally */
-    align-items: center; /* Centers the links vertically */
-    gap: 10px; /* Spacing between the links */
+    flex-direction: column;
+    gap: 20px; /* Space between the buttons */
+    width: 100%;
+    align-items: center;
 }
 
-.switch-form a {
-    color: #ff69b4; /* Pink color */
-    text-decoration: none;
-    font-weight: bold;
+/* Button styling - no box */
+.action-btn {
+    width: 90%;
+    padding: 20px;
+    background-color: transparent; /* Transparent background */
+    border: 2px solid #ff69b4; /* Pink border to keep the outline */
+    border-radius: 15px;
+    color: #ff69b4; /* Pink text */
+    font-size: 1.6rem;
+    font-family: 'Press Start 2P', cursive; /* Pixelated font */
+    text-transform: uppercase; /* Uppercase letters for extra retro feel */
+    letter-spacing: 2px; /* Spacing between letters */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
+    box-shadow: none; /* No box shadow */
 }
 
-.switch-form a:hover {
-    text-decoration: underline;
+/* Button hover effect */
+.action-btn:hover {
+    background-color: #ff69b4; /* Pink background on hover */
+    color: white; /* White text when hovered */
+    transform: scale(1.05);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3); /* Light shadow on hover */
 }
 
-/* Hide the Sign Up form by default */
-.signup-form {
-    display: none;
-}
-
-.signup-form.active {
-    display: block;
+/* Button active (clicked) effect */
+.action-btn:active {
+    background-color: #ff1493; /* Darker pink on click */
+    color: white; /* Keep the text white when clicked */
+    transform: scale(1.02); /* Slight shrink on click */
 }
