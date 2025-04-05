@@ -3,7 +3,9 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from .models import ToDoItem
 from django.shortcuts import get_object_or_404
-
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+from django.contrib import messages
 
 
 # Create your views here.
@@ -15,11 +17,22 @@ def home(request):
     }
     return render(request, 'home.html', {'tasks_by_category': tasks_by_category})
 
-def login(request):
-    return render(request, 'myapp/login.html')
+# def login(request):
+#     return render(request, 'myapp/login.html')
 
 def signup(request):
-    return render(request, 'myapp/signup.html')
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, "Signup successful! Welcome, {}.".format(user.username))
+            return redirect('home')
+        else:
+            messages.error(request, "Signup failed. Please correct the errors below.")
+    else:
+        form = UserCreationForm()
+    return render(request, 'myapp/signup.html', {'form': form})
 
 def task_list(request):
     category = request.GET.get('category', '')  # Check if category is passed via GET params
@@ -52,11 +65,24 @@ def add_task(request, category):
             ToDoItem.objects.create(title=title, category=category)  # Create a new task for the category
         return redirect('home')  # Redirect back to the home page
 
+# def mark_task_complete(request, category, task_id):
+#     task = get_object_or_404(ToDoItem, id=task_id, category=category)
+#     task.completed = True
+#     task.save()
+#     return redirect('home')  # Redirect back to the category list
+from django.contrib.auth.decorators import login_required
+
+@login_required
 def mark_task_complete(request, category, task_id):
     task = get_object_or_404(ToDoItem, id=task_id, category=category)
-    task.completed = True
-    task.save()
-    return redirect('home')  # Redirect back to the category list
+    if not task.completed:  # Only award points if the task is not already completed
+        task.completed = True
+        task.save()
+        # Award points to the logged-in user
+        request.user.profile.points += 10  # Add 10 points (or any value you choose)
+        request.user.profile.save()
+    return redirect('home')  # Redirect back to the home page
+
 
 def stretching_list(request):
     stretching = ToDoItem.objects.filter(category=ToDoItem.STRETCHING)

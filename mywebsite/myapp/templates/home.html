@@ -23,6 +23,17 @@
 <body>
     <h1>To-Do Lists</h1>
 
+    {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }}! You have <strong>{{ user.profile.points }}</strong> points.</p>
+        <!-- Change the logout link to a form that sends a POST request -->
+        <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    {% else %}
+        <p>Please <a href="{% url 'login' %}">log in</a> or <a href="{% url 'signup' %}">sign up</a>.</p>
+    {% endif %}
+
     {% for category, tasks in tasks_by_category.items %}
         <h2>{{ category|title }} Tasks</h2>
         <ul>
