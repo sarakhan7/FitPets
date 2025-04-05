@@ -10,6 +10,9 @@ from django.shortcuts import get_object_or_404
 def home(request):
     return render(request, 'myapp/home.html')  # Make sure to create this template
 
+def login(request):
+    return render(request, 'myapp/login.html')
+
 def task_list(request):
     tasks = ToDoItem.objects.all()  # Get all tasks from the database
     return render(request, 'your_template.html', {'tasks': tasks})
