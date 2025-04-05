@@ -10,6 +10,12 @@ from django.shortcuts import get_object_or_404
 def home(request):
     return render(request, 'myapp/home.html')  # Make sure to create this template
 
+def login(request):
+    return render(request, 'myapp/login.html')
+
+def register(request):
+    return render(request, 'myapp/register.html')
+
 def task_list(request):
     category = request.GET.get('category', '')  # Check if category is passed via GET params
     tasks = ToDoItem.objects.all()  # Get all tasks by default
