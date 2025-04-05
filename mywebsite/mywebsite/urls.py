@@ -17,11 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from myapp.views import home
-from . import views
+from myapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home),
+    # path('', home),
     path('exercises/', views.exercise_list, name='exercise_list'),
     path('stretching/', views.stretching_list, name='stretching_list'),
     path('cardio/', views.cardio_list, name='cardio_list')

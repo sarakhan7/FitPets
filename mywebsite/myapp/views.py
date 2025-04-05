@@ -3,8 +3,8 @@ from django.http import HttpResponse
 from .models import ToDoItem
 
 # Create your views here.
-def home(request):
-    return HttpResponse("Hello, Django!")
+# def home(request):
+#     return HttpResponse("Hello, Django!")
 
 def exercise_list(request):
     exercises = ToDoItem.objects.filter(category=ToDoItem.EXERCISE)
