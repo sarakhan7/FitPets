@@ -57,6 +57,10 @@ def stretching_list(request):
     stretching = ToDoItem.objects.filter(category=ToDoItem.STRETCHING)
     return render(request, 'task_list.html', {'tasks': stretching, 'category': ToDoItem.STRETCHING})
 
+def exercise_list(request):
+    exercise = ToDoItem.objects.filter(category=ToDoItem.EXERCISE)
+    return render(request, 'task_list.html', {'tasks': exercise, 'category': ToDoItem.EXERCISE})
+
 def cardio_list(request):
     cardio = ToDoItem.objects.filter(category=ToDoItem.CARDIO)
     return render(request, 'task_list.html', {'tasks': cardio, 'category': ToDoItem.CARDIO})
