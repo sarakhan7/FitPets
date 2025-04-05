@@ -32,13 +32,13 @@ body {
 h1.title {
     font-size: 3rem;
     margin-bottom: 20px;
-    color: #f8aaf9;
+    color: #ffcc00;
 }
 
 h2.form-title {
     font-size: 2rem;
     margin-bottom: 20px;
-    color: #f8aaf9;
+    color: #ffcc00;
 }
 
 .input-field {
@@ -56,7 +56,7 @@ h2.form-title {
     width: 80%;
     padding: 12px;
     margin: 10px 0;
-    background-color: #f8aaf9;
+    background-color: #ffcc00;
     border: none;
     border-radius: 5px;
     color: #222222;
@@ -66,7 +66,7 @@ h2.form-title {
 }
 
 .submit-btn:hover {
-    background-color: #f8aaf9;
+    background-color: #ffaa00;
 }
 
 /* Switch form link styling */
@@ -76,7 +76,7 @@ h2.form-title {
 }
 
 .switch-form a {
-    color: #f8aaf9;
+    color: #ffcc00;
     text-decoration: none;
 }
 
