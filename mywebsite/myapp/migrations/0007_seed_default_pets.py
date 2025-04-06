@@ -9,8 +9,13 @@ def create_default_pets(apps, schema_editor):
         {'name': 'Porcupine', 'price': 30, 'image': 'images/porcupine-pet.png'},
         {'name': 'Owl', 'price': 50, 'image': 'images/owl-pet.png'},
     ]
-    for pet in default_pets:
-        Pet.objects.get_or_create(name=pet['name'], defaults=pet)
+    for pet_data in default_pets:
+        pet, created = Pet.objects.get_or_create(name=pet_data['name'])
+        if created:
+            pet.price = pet_data['price']
+            pet.image = pet_data['image']
+            pet.save()
+
 
 class Migration(migrations.Migration):
 

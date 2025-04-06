@@ -34,7 +34,7 @@ class ToDoItem(models.Model):
 class Pet(models.Model):
     name = models.CharField(max_length=100)
     price = models.PositiveIntegerField()  # Cost of the pet in coins
-    image = models.ImageField(upload_to='pets/', blank=True, null=True)  # Optional pet image
+    image = models.CharField(max_length=255)  # Store the static file path as a string
 
     def __str__(self):
         return self.name
