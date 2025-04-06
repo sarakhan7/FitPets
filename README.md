@@ -1,4 +1,4 @@
-# FitPals
+# FitPets
 # 🐾 FitPets
 
 **FitPets** is a Django-based web application that combines habit tracking with virtual pet care! Earn coins by completing tasks and unlock adorable pets to keep you motivated on your goals.
