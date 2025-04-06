@@ -448,3 +448,13 @@ main {
 .tips-container ul li:last-child {
     border-bottom: none; /* Remove the border for the last item */
 }
+
+h2 {
+    font-family: 'Press Start 2P', cursive; /* Use the pixel font */
+    font-size: 1.5rem; /* Adjust the font size */
+    color: #333; /* Set the text color */
+    text-align: center; /* Center-align the text */
+    margin-bottom: 20px; /* Add spacing below the heading */
+    text-transform: uppercase; /* Make the text uppercase */
+    letter-spacing: 2px; /* Add spacing between letters */
+}
