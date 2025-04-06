@@ -99,6 +99,9 @@ def cardio_list(request):
     cardio = ToDoItem.objects.filter(category=ToDoItem.CARDIO)
     return render(request, 'task_list.html', {'tasks': cardio, 'category': ToDoItem.CARDIO})
 
+def pets(request):
+    return render(request, 'pets.html')
+
 # def mark_task_complete(request, category, task_id):
 #     task = get_object_or_404(ToDoItem, id=task_id, category=category)
 #     task.completed = True

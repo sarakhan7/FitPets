@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitPet - Pets</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 <body class="pets-page">
     <header>
@@ -17,8 +18,8 @@
         
         <nav>
             <ul>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="pets.html" class="active">Pets</a></li>
+                <li><a href="" class="active">Dashboard</a></li>
+                <li><a href="{% url 'pets' %}">Pets</a></li>
             </ul>
         </nav>
     </header>
@@ -28,7 +29,7 @@
         
         <div class="pets-grid">
             <div class="pet-card active" data-id="default">
-                <img src="images/default-pet.png" alt="Default Pet">
+                <img src="{% static 'images/default-pet.png' %}" alt="Default Pet">
                 <h3>Default Pet</h3>
                 <p>Currently Active</p>
                 <button class="select-btn">Select</button>
@@ -36,9 +37,9 @@
             
             <div class="pet-card locked" data-id="Monkey" data-price="200">
                 <div class="lock-overlay">
-                    <img src="images/lock.png" alt="Locked" class="lock-icon">
+                    <img src="{% static 'images/lock.png' %}" alt="Locked" class="lock-icon">
                 </div>
-                <img src="images/monkey-pet.png" alt="Monkey Pet">
+                <img src="{% static 'images/monkey-pet.png' %}" alt="Monkey Pet">
                 <h3>Monkey Pet</h3>
                 <p class="pet-price">200 coins</p>
                 <button class="buy-btn" data-id="Monkey" data-price="200">Unlock</button>
@@ -46,9 +47,9 @@
             
             <div class="pet-card locked" data-id="Porcupine" data-price="300">
                 <div class="lock-overlay">
-                    <img src="images/lock.png" alt="Locked" class="lock-icon">
+                    <img src="{% static 'images/lock.png' %}" alt="Locked" class="lock-icon">
                 </div>
-                <img src="images/porcupine-pet.png" alt="Porcupine Pet">
+                <img src="{% static 'images/porcupine-pet.png' %}" alt="Porcupine Pet">
                 <h3>Porcupine Pet</h3>
                 <p class="pet-price">300 coins</p>
                 <button class="buy-btn" data-id="Porcupine" data-price="300">Unlock</button>
@@ -56,9 +57,9 @@
             
             <div class="pet-card locked" data-id="Owl" data-price="500">
                 <div class="lock-overlay">
-                    <img src="images/lock.png" alt="Locked" class="lock-icon">
+                    <img src="{% static 'images/lock.png' %}" alt="Locked" class="lock-icon">
                 </div>
-                <img src="images/owl-pet.png" alt="Owl Pet">
+                <img src="{% static 'images/owl-pet.png' %}" alt="Owl Pet">
                 <h3>Owl Pet</h3>
                 <p class="pet-price">500 coins</p>
                 <button class="buy-btn" data-id="Owl" data-price="500">Unlock</button>
