@@ -36,5 +36,4 @@ urlpatterns = [
     path('<str:category>/', views.category_task_list, name='category_task_list'),
     path('<str:category>/add/', views.add_task, name='add_task'),
     path('<str:category>/complete/<int:task_id>/', views.mark_task_complete, name='mark_task_complete'),
-    
 ]

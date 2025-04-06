@@ -18,30 +18,14 @@
             background-color: #0056b3;
             border-color: #0056b3;
         }
-
-        .points-container {
-            display: flex;
-            align-items: center;
-        }
-
-        .points-container img {
-            width: 20px;
-            height: 20px;
-            margin-left: 5px;
-        }
     </style>
-    {% load static %} <!-- Load the static files tag library -->
 </head>
 <body>
     <h1>To-Do Lists</h1>
 
     {% if user.is_authenticated %}
         <p>Welcome, {{ user.username }}! You have 
-            <span class="points-container">
-                <strong>{{ user.profile.points }}</strong>
-                <img src="{% static 'images/coin.png' %}" alt="Coin">
-            </span> points.
-        </p>
+            <strong>{{ user.profile.points }}</strong> points.</p>
         <form method="POST" action="{% url 'logout' %}">
             {% csrf_token %}
             <button type="submit">Logout</button>
