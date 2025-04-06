@@ -1,3 +1,4 @@
+style:
 /* Importing Pixel Font */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
@@ -135,16 +136,24 @@ nav ul {
     gap: 20px;
 }
 
-nav ul li a {
+nav ul li {
+    display: flex;
+    align-items: center;
+}
+
+nav ul li a, .logout-btn {
     color: #fff;
     text-decoration: none;
     font-family: 'Press Start 2P', cursive;
     font-size: 14px;
     padding: 5px 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
     transition: color 0.3s ease;
 }
 
-nav ul li a:hover {
+nav ul li a:hover, .logout-btn:hover {
     color: #ff6b6b;
 }
 
@@ -409,54 +418,29 @@ main {
     }
 }
 
-/* Style for the tips container */
-.tips-container {
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 20px;
-    margin: 40px auto;
-    max-width: 600px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    font-family: 'Press Start 2P', cursive;
+.add-workout {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adjust spacing between input and button */
+    margin-top: 20px;
+}
+
+.add-workout input {
+    flex: 1;
+    padding: 12px;
+    font-size: 14px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
     color: #333;
+    font-family: Arial, sans-serif;
 }
 
-.tips-container h2 {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 18px;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #222;
+.add-workout input:focus {
+    border-color: #ff6b6b;
+    outline: none;
 }
 
-#tips-list {
-    list-style-type: square;
-    padding-left: 20px;
-    font-size: 14px;
-    line-height: 1.6;
-}
-
-#tips-list li {
-    margin-bottom: 10px;
-}
-
-.logout-btn {
-    color: #fff;
-    text-decoration: none;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 14px;
-    padding: 5px 10px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.logout-btn:hover {
-    color: #ff6b6b; /* Match hover effect */
-}
-
-/* Style for the Add Task button */
 .add-workout button {
     padding: 12px 20px;
     background-color: #ff6b6b;
@@ -471,7 +455,6 @@ main {
 }
 
 .add-workout button:hover {
-    transform: translate(-2px, -2px); /* Add a hover effect */
+    transform: translate(-2px, -2px);
     box-shadow: 5px 5px 0 #333;
-    background-color: #ff5252; /* Slightly darker red on hover */
 }
