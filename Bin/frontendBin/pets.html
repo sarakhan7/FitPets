@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitPet - Pets</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="pets-page">
+    <header>
+        <div class="currency-display">
+            <div class="coin-container">
+                <div class="animated-coin"></div>
+                <span id="coin-count">0</span>
+            </div>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="pets.html" class="active">Pets</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h2>Your Pets Collection</h2>
+        
+        <div class="pets-grid">
+            <div class="pet-card active" data-id="default">
+                <img src="images/default-pet.png" alt="Default Pet">
+                <h3>Default Pet</h3>
+                <p>Currently Active</p>
+                <button class="select-btn">Select</button>
+            </div>
+            
+            <div class="pet-card locked" data-id="Monkey" data-price="200">
+                <div class="lock-overlay">
+                    <img src="images/lock.png" alt="Locked" class="lock-icon">
+                </div>
+                <img src="images/monkey-pet.png" alt="Monkey Pet">
+                <h3>Monkey Pet</h3>
+                <p class="pet-price">200 coins</p>
+                <button class="buy-btn" data-id="Monkey" data-price="200">Unlock</button>
+            </div>
+            
+            <div class="pet-card locked" data-id="Porcupine" data-price="300">
+                <div class="lock-overlay">
+                    <img src="images/lock.png" alt="Locked" class="lock-icon">
+                </div>
+                <img src="images/porcupine-pet.png" alt="Porcupine Pet">
+                <h3>Porcupine Pet</h3>
+                <p class="pet-price">300 coins</p>
+                <button class="buy-btn" data-id="Porcupine" data-price="300">Unlock</button>
+            </div>
+            
+            <div class="pet-card locked" data-id="Owl" data-price="500">
+                <div class="lock-overlay">
+                    <img src="images/lock.png" alt="Locked" class="lock-icon">
+                </div>
+                <img src="images/owl-pet.png" alt="Owl Pet">
+                <h3>Owl Pet</h3>
+                <p class="pet-price">500 coins</p>
+                <button class="buy-btn" data-id="Owl" data-price="500">Unlock</button>
+            </div>
+        </div>
+        
+        <button id="show-prices" class="pixel-btn">Show All Prices</button>
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>

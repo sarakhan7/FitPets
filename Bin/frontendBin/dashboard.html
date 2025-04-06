@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitPet - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dashboard-page">
+    <header>
+        <div class="currency-display">
+            <div class="coin-container">
+                <div class="animated-coin"></div>
+                <span id="coin-count">100</span>
+            </div>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="pets.html">Pets</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="current-pet-container">
+            <h2>Your Current Pet</h2>
+            <div class="current-pet">
+                <img id="active-pet" src="images/default-pet.png" alt="Your Pet">
+                <h3 id="pet-name">Default Pet</h3>
+            </div>
+        </div>
+        
+        <div class="workouts-container">
+            <div class="workout-category" id="weightlifting">
+                <h3>Weightlifting</h3>
+                <ul class="workout-list" id="weightlifting-list">
+                    <!-- Workouts will be added here -->
+                </ul>
+                <div class="add-workout">
+                    <input type="text" id="weightlifting-input" placeholder="Add a new workout">
+                    <button class="add-btn" data-category="weightlifting">Add</button>
+                </div>
+            </div>
+            
+            <div class="workout-category" id="stretching">
+                <h3>Stretching</h3>
+                <ul class="workout-list" id="stretching-list">
+                    <!-- Workouts will be added here -->
+                </ul>
+                <div class="add-workout">
+                    <input type="text" id="stretching-input" placeholder="Add a new workout">
+                    <button class="add-btn" data-category="stretching">Add</button>
+                </div>
+            </div>
+            
+            <div class="workout-category" id="cardio">
+                <h3>Cardio</h3>
+                <ul class="workout-list" id="cardio-list">
+                    <!-- Workouts will be added here -->
+                </ul>
+                <div class="add-workout">
+                    <input type="text" id="cardio-input" placeholder="Add a new workout">
+                    <button class="add-btn" data-category="cardio">Add</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>
