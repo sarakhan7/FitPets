@@ -18,7 +18,7 @@
 
 ## 📷 Screenshots
 
-Coming soon...
+![FitPets Screenshot](screenshots/homepage.png)
 
 ---
 
