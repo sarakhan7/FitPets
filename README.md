@@ -39,3 +39,10 @@ Coming soon...
 ```bash
 git clone https://github.com/yourusername/fitpets.git
 cd fitpets
+
+python -m venv venv
+source venv/bin/activate
+
+pip install -r requirements.txt
+
+python manage.py migrate
