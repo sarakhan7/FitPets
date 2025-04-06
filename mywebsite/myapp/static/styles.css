@@ -1,3 +1,4 @@
+style:
 /* Importing Pixel Font */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
@@ -129,27 +130,30 @@ header {
     height: 24px;
 }
 
-.coin2{
-    width: 24px;
-    height: 24px;
-}
-
 nav ul {
     display: flex;
     list-style: none;
     gap: 20px;
 }
 
-nav ul li a {
+nav ul li {
+    display: flex;
+    align-items: center;
+}
+
+nav ul li a, .logout-btn {
     color: #fff;
     text-decoration: none;
     font-family: 'Press Start 2P', cursive;
     font-size: 14px;
     padding: 5px 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
     transition: color 0.3s ease;
 }
 
-nav ul li a:hover {
+nav ul li a:hover, .logout-btn:hover {
     color: #ff6b6b;
 }
 
@@ -414,37 +418,43 @@ main {
     }
 }
 
-/* Style for the tips container */
-.tips-container {
-    padding: 20px; /* Add padding inside the box */
-    border-radius: 10px; /* Rounded corners */
-    max-width: 600px; /* Limit the width of the box */
-    margin: 20px auto; /* Center the box horizontally with some margin */
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.add-workout {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adjust spacing between input and button */
+    margin-top: 20px;
 }
 
-/* Style for the tips list */
-.tips-container h2 {
-    font-size: 1rem; /* Adjust heading size */
-    margin-bottom: 10px; /* Add space below the heading */
-    text-align: center; /* Center the heading text */
+.add-workout input {
+    flex: 1;
+    padding: 12px;
+    font-size: 14px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    color: #333;
+    font-family: Arial, sans-serif;
+}
+
+.add-workout input:focus {
+    border-color: #ff6b6b;
+    outline: none;
+}
+
+.add-workout button {
+    padding: 12px 20px;
+    background-color: #ff6b6b;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
     font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 #333;
+    transition: all 0.3s ease;
 }
 
-.tips-container ul {
-    list-style-type: none; /* Remove default bullet points */
-    padding: 0; /* Remove default padding */
-    margin: 0; /* Remove default margin */
-}
-
-.tips-container ul li {
-    padding: 10px; /* Add padding to each list item */
-    border-bottom: 1px solid #555; /* Add a subtle border between items */
-}
-
-.tips-container ul li:last-child {
-    border-bottom: none; /* Remove the border for the last item */
+.add-workout button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 #333;
 }
