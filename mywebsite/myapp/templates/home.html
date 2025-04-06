@@ -54,7 +54,7 @@
             <a href="{% url 'mark_task_complete' category='exercise' task_id=task.id %}" class="complete-btn">✔</a>
           </li>
         {% empty %}
-          <li>No Weightlifting tasks found.</li>
+          <li class="no-tasks">No Weightlifting tasks found.</li>
         {% endfor %}
       </ul>
       <div class="add-workout">
@@ -76,9 +76,9 @@
             <a href="{% url 'mark_task_complete' category='stretching' task_id=task.id %}" class="complete-btn">✔</a>
           </li>
         {% empty %}
-          <li>No Stretching tasks found.</li>
+          <li class="no-tasks">No Stretching tasks found.</li>
         {% endfor %}
-      </ul>
+      </ul>      
       <div class="add-workout">
         <form method="post" action="{% url 'add_task' category='stretching' %}">
           {% csrf_token %}
@@ -98,7 +98,7 @@
             <a href="{% url 'mark_task_complete' category='cardio' task_id=task.id %}" class="complete-btn">✔</a>
           </li>
         {% empty %}
-          <li>No Cardio tasks found.</li>
+          <li class="no-tasks">No Cardio tasks found.</li>
         {% endfor %}
       </ul>
       <div class="add-workout">
