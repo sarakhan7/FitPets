@@ -18,7 +18,7 @@
 
 ## 📷 Screenshots
 
-![FitPets Screenshot](screenshots/homepage.png)
+![FitPets Screenshot](https://github.com/KevinW-YT/FitPets/blob/main/mywebsite/screenshots/homepage.png?raw=true)
 
 ---
 
