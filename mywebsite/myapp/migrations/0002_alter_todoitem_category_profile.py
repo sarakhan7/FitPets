@@ -5,6 +5,12 @@ from django.conf import settings
 from django.db import migrations, models
 
 
+def create_pets(apps, schema_editor):
+    Pet = apps.get_model('myapp', 'Pet')
+    Pet.objects.create(name='Monkey', price=20, image='images/monkey-pet.png')
+    Pet.objects.create(name='Porcupine', price=30, image='images/porcupine-pet.png')
+    Pet.objects.create(name='Owl', price=50, image='images/owl-pet.png')
+
 class Migration(migrations.Migration):
 
     dependencies = [
