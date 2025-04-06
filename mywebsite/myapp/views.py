@@ -29,8 +29,11 @@ def home(request):
     return render(request, 'home.html', {'tasks_by_category': tasks_by_category, 'tips': tips})
 
 def get_tips(request):
-    tasks = ToDoItem.objects.filter(user=request.user, completed=False)
-    tips = get_tips_from_gemini_ai(tasks)
+    if not request.user.is_authenticated:
+        return JsonResponse({"tips": ["Please log in to get personalized tips."]})
+
+    tasks = ToDoItem.objects.filter(user=request.user, completed=False)  # Filter tasks by user
+    tips = get_tips_from_gemini_ai(tasks)  # Fetch tips from Gemini AI
     return JsonResponse({"tips": tips})
 
 def signup(request):
@@ -64,7 +67,7 @@ def add_task(request, category):
     if request.method == 'POST':
         title = request.POST.get('title')  # Get the task title from the form
         if title:
-            ToDoItem.objects.create(title=title, category=category)  # Create a new task for the category
+            ToDoItem.objects.create(title=title, category=category, user=request.user)  # Create a new task for the category
         return redirect('home')  # Redirect back to the home page
 
 
