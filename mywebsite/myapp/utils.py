@@ -15,15 +15,14 @@ def get_tips_from_gemini_ai(tasks):
     Generate tips using Gemini AI based on the user's to-do list, with caching to improve performance.
     """
     # Create a cache key based on the task titles to uniquely identify the cache for these tasks
-    task_titles = [task.title for task in tasks]
-    
-    if not task_titles:
+    if not tasks:
         return ["All tasks completed! Have a delicious, refreshing plain Greek yogurt."]
 
-    # Cache key is a combination of task titles to uniquely identify the tips for this set of tasks
-    cache_key = "gemini_tips_" + "_".join(task_titles)
+    # Create a cache key based on the task titles to uniquely identify the cache for these tasks
+    task_titles = [task.title for task in tasks]
+    user_id = tasks[0].user.id if tasks else "anonymous"
+    cache_key = f"gemini_tips_{user_id}_" + "_".join(task_titles)
 
-    # Try to get the cached tips
     cached_tips = cache.get(cache_key)
     if cached_tips:
         return cached_tips

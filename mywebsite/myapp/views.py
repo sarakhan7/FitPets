@@ -15,15 +15,19 @@ from .models import ToDoItem
 from .utils import get_tips_from_gemini_ai
 
 # Create your views here.
+@login_required
 def home(request):
+    if not request.user.is_authenticated:
+        return redirect('login')  # Redirect to the login page
+    
     categories = ['exercise', 'cardio', 'stretching']
     tasks_by_category = {
-        category: ToDoItem.objects.filter(category=category, completed=False)
+        category: ToDoItem.objects.filter(user=request.user, category=category, completed=False)
         for category in categories
     }
 
-    # Combine all tasks into a single list to send to the AI
-    all_tasks = ToDoItem.objects.filter(completed=False)
+    # Combine all tasks for the logged-in user to send to the AI
+    all_tasks = ToDoItem.objects.filter(user=request.user, completed=False)
     tips = get_tips_from_gemini_ai(all_tasks)  # Fetch tips from Gemini AI
 
     return render(request, 'home.html', {'tasks_by_category': tasks_by_category, 'tips': tips})
@@ -67,7 +71,7 @@ def add_task(request, category):
     if request.method == 'POST':
         title = request.POST.get('title')  # Get the task title from the form
         if title:
-            ToDoItem.objects.create(title=title, category=category, user=request.user)  # Create a new task for the category
+            ToDoItem.objects.create(title=title, category=category, user=request.user)  # Associate task with user
         return redirect('home')  # Redirect back to the home page
 
 
