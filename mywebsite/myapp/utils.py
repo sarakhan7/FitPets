@@ -18,7 +18,7 @@ def get_tips_from_gemini_ai(tasks):
     task_titles = [task.title for task in tasks]
     
     if not task_titles:
-        return ["You have no tasks right now. Try adding some!"]
+        return ["All tasks completed! Have a delicious, refreshing plain Greek yogurt."]
 
     # Cache key is a combination of task titles to uniquely identify the tips for this set of tasks
     cache_key = "gemini_tips_" + "_".join(task_titles)
