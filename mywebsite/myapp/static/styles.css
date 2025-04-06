@@ -526,6 +526,20 @@ nav ul li a, .logout-btn {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Style for navigation links and logout button */
+nav ul li a, .logout-btn {
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    padding: 5px 10px;
+    background-color: #ff6b6b;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 /* Hover effect for navigation links and logout button */
 nav ul li a:hover, .logout-btn:hover {
     background-color: #ff5252;

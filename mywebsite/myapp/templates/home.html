@@ -20,22 +20,21 @@
             {% endif %}
         </div>
       </div>
-      
       <nav>
         <ul>
           <li><a href="{% url 'home' %}" class="active">Dashboard</a></li>
           <li><a href="{% url 'pets' %}">Pets</a></li>
+          {% if user.is_authenticated %}
+          <li>
+            <form method="POST" action="{% url 'logout' %}" style="display: inline;">
+              {% csrf_token %}
+              <button type="submit" class="logout-btn">Logout</button>
+            </form>
+          </li>
+          {% endif %}
         </ul>
       </nav>
     </header>
-    <div class="button-group">
-      {% if user.is_authenticated %}
-          <form method="POST" action="{% url 'logout' %}" class="logout-form">
-              {% csrf_token %}
-              <button class = "add-btn" type="submit">Logout</button>
-          </form>
-      {% endif %}
-    </div>
     <main>
   <div class="current-pet-container">
     <h2>Your Current Pet</h2>
