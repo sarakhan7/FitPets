@@ -28,7 +28,7 @@ Coming soon...
 - Django 4.x  
 - HTML5 + CSS3  
 - JavaScript (Fetch API)  
-- SQLite (default) or PostgreSQL  
+- Made with the help of Copilot  
 
 ---
 
