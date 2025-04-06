@@ -25,6 +25,7 @@
 
     {% if user.is_authenticated %}
         <p>Welcome, {{ user.username }}! You have <strong>{{ user.profile.points }}</strong> points.</p>
+        <!-- Change the logout link to a form that sends a POST request -->
         <form method="POST" action="{% url 'logout' %}">
             {% csrf_token %}
             <button type="submit">Logout</button>
@@ -52,38 +53,13 @@
         </form>
         <hr>
     {% endfor %}
-
     <h2>Tips from Gemini AI</h2>
-    <ul id="tips-list">
-        <li>Loading tips...</li>
+    <ul>
+        {% for tip in tips %}
+            <li>{{ tip }}</li>
+        {% empty %}
+            <li>No tips available at this time.</li>
+        {% endfor %}
     </ul>
-
-    <!-- JavaScript to fetch tips -->
-    <script>
-        async function fetchTips() {
-            try {
-                const response = await fetch('/get-tips/');
-                const data = await response.json();
-                const tipsList = document.getElementById('tips-list');
-                tipsList.innerHTML = '';  // Clear existing tips
-
-                if (data.tips.length > 0) {
-                    data.tips.forEach(tip => {
-                        const li = document.createElement('li');
-                        li.textContent = tip;
-                        tipsList.appendChild(li);
-                    });
-                } else {
-                    tipsList.innerHTML = '<li>No tips available at this time.</li>';
-                }
-            } catch (error) {
-                console.error("Failed to fetch tips:", error);
-                document.getElementById('tips-list').innerHTML = '<li>Failed to load tips.</li>';
-            }
-        }
-
-        // Fetch tips when the page loads
-        document.addEventListener('DOMContentLoaded', fetchTips);
-    </script>
 </body>
 </html>

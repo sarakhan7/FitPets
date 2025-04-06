@@ -14,7 +14,7 @@ if not api_key:
 genai.configure(api_key=api_key)
 
 # Use Gemini Pro model
-model = genai.GenerativeModel(model_name="gemini-2.0-pro-exp")
+model = genai.GenerativeModel(model_name="gemini-2.0-flash-001")
 
 # Define your project directory path
 project_directory = os.getcwd()

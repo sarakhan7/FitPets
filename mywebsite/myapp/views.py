@@ -9,16 +9,29 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
-
+from .utils import get_tips_from_gemini_ai
+from django.http import JsonResponse
+from .models import ToDoItem
+from .utils import get_tips_from_gemini_ai
 
 # Create your views here.
 def home(request):
-    categories = ['exercise', 'cardio', 'stretching']  # Define the categories
+    categories = ['exercise', 'cardio', 'stretching']
     tasks_by_category = {
         category: ToDoItem.objects.filter(category=category, completed=False)
         for category in categories
     }
-    return render(request, 'home.html', {'tasks_by_category': tasks_by_category})
+
+    # Combine all tasks into a single list to send to the AI
+    all_tasks = ToDoItem.objects.filter(completed=False)
+    tips = get_tips_from_gemini_ai(all_tasks)  # Fetch tips from Gemini AI
+
+    return render(request, 'home.html', {'tasks_by_category': tasks_by_category, 'tips': tips})
+
+def get_tips(request):
+    tasks = ToDoItem.objects.filter(user=request.user, completed=False)
+    tips = get_tips_from_gemini_ai(tasks)
+    return JsonResponse({"tips": tips})
 
 def signup(request):
     if request.method == 'POST':

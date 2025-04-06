@@ -32,6 +32,7 @@ urlpatterns = [
     path('exercises/', views.exercise_list, name='exercise_list'),
     path('stretching/', views.stretching_list, name='stretching_list'),
     path('cardio/', views.cardio_list, name='cardio_list'),
+    path('get-tips/', views.get_tips, name='get_tips'),  # New endpoint for fetching tips
     path('<str:category>/', views.category_task_list, name='category_task_list'),
     path('<str:category>/add/', views.add_task, name='add_task'),
     path('<str:category>/complete/<int:task_id>/', views.mark_task_complete, name='mark_task_complete'),
