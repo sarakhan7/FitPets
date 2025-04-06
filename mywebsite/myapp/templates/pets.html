@@ -28,8 +28,30 @@
             </ul>
         </nav>
     </header>
-    
     <main>
+        <h2>Your Pets Collection</h2>
+        
+        <div class="pets-grid">
+            {% for pet in pets %}
+                <div class="pet-card {% if pet in user.profile.pets.all %}active{% else %}locked{% endif %}" data-id="{{ pet.id }}" data-price="{{ pet.price }}">
+                    {% if pet not in user.profile.pets.all %}
+                        <div class="lock-overlay">
+                            <img src="{% static 'images/lock.png' %}" alt="Locked" class="lock-icon">
+                        </div>
+                    {% endif %}
+                    <img src="{% static pet.image %}" alt="{{ pet.name }} Pet">
+                    <h3>{{ pet.name }} Pet</h3>
+                    <p class="pet-price">{{ pet.price }} coins</p>
+                    {% if pet in user.profile.pets.all %}
+                        <button class="select-btn">Select</button>
+                    {% else %}
+                        <button class="buy-btn" data-id="{{ pet.id }}" data-price="{{ pet.price }}">Unlock</button>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+    <!-- <main>
         <h2>Your Pets Collection</h2>
         
         <div class="pets-grid">
@@ -72,7 +94,7 @@
         </div>
         
         <button id="show-prices" class="pixel-btn">Show All Prices</button>
-    </main>
+    </main> -->
 
     <!-- JavaScript to handle buying pets -->
     <script>
