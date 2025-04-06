@@ -111,6 +111,14 @@ header {
     z-index: 100;
 }
 
+body.dashboard-page {
+    background-image: url("images/dashboard-background.png");
+    background-size: cover; /* Ensures the image covers the entire page */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-attachment: fixed; /* Keeps the background fixed during scrolling */
+}
+
 .currency-display {
     display: flex;
     gap: 20px;
