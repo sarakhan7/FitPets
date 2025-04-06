@@ -39,8 +39,13 @@
   <div class="current-pet-container">
     <h2>Your Current Pet</h2>
     <div class="current-pet">
-      <img id="active-pet" src="{% static 'images/default-pet.png' %}" alt="Your Pet" />
-      <h3 id="pet-name">Default Pet</h3>
+      {% if user.profile.current_pet %}
+        <img id="active-pet" src="{{ user.profile.current_pet.image.url }}" alt="Your Pet" />
+        <h3 id="pet-name">{{ user.profile.current_pet.name }}</h3>
+      {% else %}
+        <img id="active-pet" src="{% static 'images/default-pet.png' %}" alt="Your Pet" />
+        <h3 id="pet-name">Default Pet</h3>
+      {% endif %}
     </div>
   </div>
   <div class="workouts-container">

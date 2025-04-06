@@ -129,6 +129,40 @@ def buy_pet(request):
 
     return JsonResponse({'success': False, 'message': 'Invalid request.'})
 
+
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import get_object_or_404
+from .models import Pet
+import json
+
+@login_required
+@csrf_exempt  # Temporarily bypass CSRF for testing, remove this for production
+def select_pet(request):
+    if request.method == 'POST':
+        # Parse the JSON data from the body
+        data = json.loads(request.body)
+        pet_id = data.get('pet_id')  # Get the pet ID from the request body
+
+        # Fetch the pet object
+        pet = get_object_or_404(Pet, id=pet_id)
+        profile = request.user.profile  # Get the user's profile
+
+        # Check if the user owns the pet
+        if pet in profile.pets.all():
+            profile.current_pet = pet  # Set the current pet
+            profile.save()  # Save the profile
+            return JsonResponse({
+                'success': True,
+                'message': f'{pet.name} is now your active pet!',
+                'pet_image': pet.image.url,
+                'pet_name': pet.name
+            })
+        else:
+            return JsonResponse({'success': False, 'message': 'You do not own this pet.'})
+
+    return JsonResponse({'success': False, 'message': 'Invalid request.'})
+
 # def mark_task_complete(request, category, task_id):
 #     task = get_object_or_404(ToDoItem, id=task_id, category=category)
 #     task.completed = True

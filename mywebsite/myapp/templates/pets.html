@@ -43,7 +43,7 @@
                     <h3>{{ pet.name }} Pet</h3>
                     <p class="pet-price">{{ pet.price }} coins</p>
                     {% if pet in user.profile.pets.all %}
-                        <button class="select-btn">Select</button>
+                        <button class="select-btn" data-id="{{ pet.id }}">Select</button>
                     {% else %}
                         <button class="buy-btn" data-id="{{ pet.id }}" data-price="{{ pet.price }}">Unlock</button>
                     {% endif %}
@@ -51,54 +51,11 @@
             {% endfor %}
         </div>
     </main>
-    <!-- <main>
-        <h2>Your Pets Collection</h2>
-        
-        <div class="pets-grid">
-            <div class="pet-card active" data-id="default">
-                <img src="{% static 'images/default-pet.png' %}" alt="Default Pet">
-                <h3>Default Pet</h3>
-                <p>Currently Active</p>
-                <button class="select-btn">Select</button>
-            </div>
-            
-            <div class="pet-card locked" data-id="Monkey" data-price="200">
-                <div class="lock-overlay">
-                    <img src="{% static 'images/lock.png' %}" alt="Locked" class="lock-icon">
-                </div>
-                <img src="{% static 'images/monkey-pet.png' %}" alt="Monkey Pet">
-                <h3>Monkey Pet</h3>
-                <p class="pet-price">200 coins</p>
-                <button class="buy-btn" data-id="Monkey" data-price="200">Unlock</button>
-            </div>
-            
-            <div class="pet-card locked" data-id="Porcupine" data-price="300">
-                <div class="lock-overlay">
-                    <img src="{% static 'images/lock.png' %}" alt="Locked" class="lock-icon">
-                </div>
-                <img src="{% static 'images/porcupine-pet.png' %}" alt="Porcupine Pet">
-                <h3>Porcupine Pet</h3>
-                <p class="pet-price">300 coins</p>
-                <button class="buy-btn" data-id="Porcupine" data-price="300">Unlock</button>
-            </div>
-            
-            <div class="pet-card locked" data-id="Owl" data-price="500">
-                <div class="lock-overlay">
-                    <img src="{% static 'images/lock.png' %}" alt="Locked" class="lock-icon">
-                </div>
-                <img src="{% static 'images/owl-pet.png' %}" alt="Owl Pet">
-                <h3>Owl Pet</h3>
-                <p class="pet-price">500 coins</p>
-                <button class="buy-btn" data-id="Owl" data-price="500">Unlock</button>
-            </div>
-        </div>
-        
-        <button id="show-prices" class="pixel-btn">Show All Prices</button>
-    </main> -->
 
-    <!-- JavaScript to handle buying pets -->
+    <!-- JavaScript to handle buying and selecting pets -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Handle buy buttons
             const buyButtons = document.querySelectorAll('.buy-btn');
 
             buyButtons.forEach(button => {
@@ -126,15 +83,46 @@
                         button.textContent = 'Select';
                         button.classList.remove('buy-btn');
                         button.classList.add('select-btn');
+
+                        // Attach event listener to the "Select" button after it changes from "Unlock"
+                        attachSelectButtonListener(button);
                     } else {
                         alert(data.message);
                     }
                 });
             });
+
+            // Handle select buttons
+            const selectButtons = document.querySelectorAll('.select-btn');
+            selectButtons.forEach(button => attachSelectButtonListener(button));
+
+            function attachSelectButtonListener(button) {
+                button.addEventListener('click', async () => {
+                    const petId = button.dataset.id;  // Get the pet ID from the button's data attribute
+                    console.log('Selecting pet with ID:', petId);  // Debugging log
+
+                    const response = await fetch("{% url 'select_pet' %}", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': '{{ csrf_token }}',
+                        },
+                        body: JSON.stringify({ pet_id: petId }),
+                    });
+
+                    const data = await response.json();
+                    if (data.success) {
+                        alert(data.message);
+                        document.getElementById('active-pet').src = data.pet_image;  // Update the pet image
+                        document.getElementById('pet-name').textContent = data.pet_name;  // Update the pet name
+                    } else {
+                        alert(data.message);
+                    }
+                });
+            }
         });
     </script>
 
     <script src="script.js"></script>
 </body>
 </html>
-

@@ -43,6 +43,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     points = models.PositiveIntegerField(default=0)  # User's coin balance
     pets = models.ManyToManyField(Pet, blank=True)  # Pets owned by the user
-
+    current_pet = models.ForeignKey(Pet, on_delete=models.SET_NULL, null=True, blank=True, related_name='current_pet')
+    
     def __str__(self):
         return f"{self.user.username}'s Profile"
