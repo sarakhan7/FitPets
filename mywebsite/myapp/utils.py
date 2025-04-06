@@ -33,7 +33,7 @@ def get_tips_from_gemini_ai(tasks):
         + "\n".join(f"- {title}" for title in task_titles)
         + "\n\nGive tips on how to achieve these tasks in the to do list. Make it very concise, with each tip only being 1-2 lines."
         + "\n\nAlso, do not include anything similar to 'Okay, here are some concise tips to achieve each goal:', only include the tips themselves."
-        + "\n\nWhen generating the tips, do not include the name of the task, and do not use any bold or italicize or anything else, just the tip in plain text."
+        + "\n\nWhen generating the tips, do not include the name of the task, and do not use any bold or italicize or anything else, just the tip in plain text. Again, the tip for one task should be 1-2 lines maximum."
     )
 
     try:
