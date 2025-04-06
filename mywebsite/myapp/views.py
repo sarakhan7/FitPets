@@ -14,7 +14,8 @@ from django.http import JsonResponse
 from .models import ToDoItem
 from .utils import get_tips_from_gemini_ai
 from .models import Pet, Profile
-
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 # Create your views here.
 @login_required
@@ -101,12 +102,17 @@ def cardio_list(request):
     cardio = ToDoItem.objects.filter(category=ToDoItem.CARDIO)
     return render(request, 'task_list.html', {'tasks': cardio, 'category': ToDoItem.CARDIO})
 
+@login_required
 def pets(request):
-    return render(request, 'pets.html')
+    pets = Pet.objects.all()
+    return render(request, 'pets.html', {'pets': pets})
 
+@csrf_exempt
+@login_required
 def buy_pet(request):
     if request.method == 'POST':
-        pet_id = request.POST.get('pet_id')
+        data = json.loads(request.body)
+        pet_id = data.get('pet_id')
         pet = get_object_or_404(Pet, id=pet_id)
         profile = request.user.profile
 
