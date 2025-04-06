@@ -129,6 +129,11 @@ header {
     height: 24px;
 }
 
+.coin2{
+    width: 24px;
+    height: 24px;
+}
+
 nav ul {
     display: flex;
     list-style: none;

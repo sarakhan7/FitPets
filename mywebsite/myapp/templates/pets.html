@@ -12,7 +12,12 @@
         <div class="currency-display">
             <div class="coin-container">
                 <div class="animated-coin"></div>
-                <span id="coin-count">0</span>
+                <img src="{% static 'images/coin2.png' %}" alt="Coin">
+                {% if user.is_authenticated %}
+                    <span id="coin-count">{{ user.profile.points }}</span>
+                {% else %}
+                    <span id="coin-count">0</span>
+                {% endif %}
             </div>
         </div>
         
