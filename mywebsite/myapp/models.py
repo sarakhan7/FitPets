@@ -2,12 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    points = models.IntegerField(default=0)  # Points field for the user
-
-    def __str__(self):
-        return f"{self.user.username}'s Profile"
 
 class ToDoItem(models.Model):
     title = models.CharField(max_length=255)
@@ -35,3 +29,20 @@ class ToDoItem(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+class Pet(models.Model):
+    name = models.CharField(max_length=100)
+    price = models.PositiveIntegerField()  # Cost of the pet in coins
+    image = models.ImageField(upload_to='pets/', blank=True, null=True)  # Optional pet image
+
+    def __str__(self):
+        return self.name
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    points = models.PositiveIntegerField(default=0)  # User's coin balance
+    pets = models.ManyToManyField(Pet, blank=True)  # Pets owned by the user
+
+    def __str__(self):
+        return f"{self.user.username}'s Profile"

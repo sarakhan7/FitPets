@@ -19,6 +19,12 @@ home:
           {% else %}
           <span id="coin-count">0</span>
           {% endif %}
+          <img src="{% static 'images/coin2.png' %}" alt="Coin">
+            {% if user.is_authenticated %}
+            <span id="coin-count">{{ user.profile.points }}</span>
+            {% else %}
+            <span id="coin-count">0</span>
+            {% endif %}
         </div>
       </div>
     
@@ -40,7 +46,7 @@ home:
 
     <main>
   <div class="current-pet-container">
-    <h2>Your Current Pet</h2>
+    <h2 class="header">Your Current Pet</h2>
     <div class="current-pet">
       <img id="active-pet" src="{% static 'images/default-pet.png' %}" alt="Your Pet" />
       <h3 id="pet-name">Default Pet</h3>
