@@ -34,8 +34,6 @@ Coming soon...
 
 ## ⚙️ Setup Instructions
 
-### 1. Clone the Repository
-
 ```bash
 git clone https://github.com/yourusername/fitpets.git
 cd fitpets
@@ -46,3 +44,5 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 python manage.py migrate
+
+python manage.py runserver
