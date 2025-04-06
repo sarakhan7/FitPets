@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitPet - Sign Up</title>
+    <title>FitPet - Login</title>
     
-    <!-- Embedded CSS -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
@@ -34,9 +33,9 @@
             letter-spacing: 2px;
         }
 
-        .signup-page {
+        .login-page {
             background-color: #333;
-            background-image: url("{% static 'images/pixel-background.png' %}");
+            background-image: url("{% static 'images/pixel-background.jpg' %}");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -46,7 +45,7 @@
             min-height: 100vh;
         }
 
-        .signup-page .container {
+        .login-page .container {
             text-align: center;
             background-color: rgba(0, 0, 0, 0.7);
             padding: 40px;
@@ -54,7 +53,7 @@
             max-width: 500px;
         }
 
-        .signup-page h1 {
+        .login-page h1 {
             color: #fff;
             font-size: 2.5rem;
             margin-bottom: 30px;
@@ -106,18 +105,18 @@
         }
 
         @media (max-width: 768px) {
-            .signup-page h1 {
+            .login-page h1 {
                 font-size: 1.8rem;
             }
         }
     </style>
 </head>
-<body class="signup-page">
+<body class="login-page">
     <div class="container">
-        <h1 class="pixel-font">Create Your FitPet Account!</h1>
-        <div class="signup-form">
+        <h1 class="pixel-font">Welcome to FitPet!</h1>
+        <div class="login-form">
             {% if form.errors %}
-                <p style="color: red;">Please fix the errors below and try again.</p>
+                <p style="color: red;">Invalid username or password. Please try again.</p>
             {% endif %}
             <form method="POST">
                 {% csrf_token %}
@@ -125,19 +124,15 @@
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" required>
                 </div>
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password1" required>
-                </div>
                 
                 <div class="form-group">
-                    <label for="confirm-password">Confirm Password:</label>
-                    <input type="password" id="confirm-password" name="password2" required>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
                 </div>
                 
                 <div class="button-group">
-                    <button type="submit" id="signup-btn" class="pixel-btn">Sign Up</button>
-                    <button type="button" id="login-btn" class="pixel-btn">Login</button>
+                    <button type="submit" id="login-btn" class="pixel-btn">Login</button>
+                    <button type="button" id="signup-btn" class="pixel-btn">Sign Up</button>
                 </div>
             </form>
         </div>
