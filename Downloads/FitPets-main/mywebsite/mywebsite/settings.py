@@ -1,9 +1,11 @@
 from pathlib import Path
 import os
-from dotenv import load_dotenv
 import dj_database_url
 
-load_dotenv()
+# Only load .env for local dev if SECRET_KEY isn't set
+if not os.getenv('SECRET_KEY'):
+    from dotenv import load_dotenv
+    load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
