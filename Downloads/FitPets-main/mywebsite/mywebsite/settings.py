@@ -10,10 +10,9 @@ if not os.getenv('SECRET_KEY'):
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Environment variables
-SECRET_KEY = os.getenv('SECRET_KEY')
-print("SECRET_KEY loaded:", bool(SECRET_KEY))
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
+SECRET_KEY = 'your_actual_secret_key_here'
+DEBUG = False
+ALLOWED_HOSTS = ['fitpets.onrender.com']
 
 # Auth redirects
 LOGOUT_REDIRECT_URL = 'home'
