@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home - To-Do Lists</title>
+    <style>
+        .complete-btn {
+            display: inline-block;
+            padding: 5px 10px;
+            border: 1px solid #007bff;
+            border-radius: 50%;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+            text-align: center;
+        }
+        .complete-btn:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>To-Do Lists</h1>
+
+    {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }}! You have <strong>{{ user.profile.points }}</strong> points.</p>
+        <!-- Change the logout link to a form that sends a POST request -->
+        <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    {% else %}
+        <p>Please <a href="{% url 'login' %}">log in</a> or <a href="{% url 'signup' %}">sign up</a>.</p>
+    {% endif %}
+
+    {% for category, tasks in tasks_by_category.items %}
+        <h2>{{ category|title }} Tasks</h2>
+        <ul>
+            {% for task in tasks %}
+                <li>
+                    {{ task.title }} - 
+                    <a href="{% url 'mark_task_complete' category=category task_id=task.id %}" class="complete-btn">✔</a>
+                </li>
+            {% empty %}
+                <li>No {{ category }} tasks found.</li>
+            {% endfor %}
+        </ul>
+        <form method="post" action="{% url 'add_task' category=category %}">
+            {% csrf_token %}
+            <input type="text" name="title" placeholder="Add a new {{ category|title }} task" required>
+            <button type="submit">Add Task</button>
+        </form>
+        <hr>
+    {% endfor %}
+    <h2>Tips from Gemini AI</h2>
+    <ul>
+        {% for tip in tips %}
+            <li>{{ tip }}</li>
+        {% empty %}
+            <li>No tips available at this time.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ category|title }} To-Do List</title>
+    <style>
+        .complete-btn {
+            display: inline-block;
+            padding: 5px 10px;
+            border: 1px solid #007bff;
+            border-radius: 50%;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+            text-align: center;
+        }
+        .complete-btn:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ category|title }} To-Do List</h1>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                {{ task.title }} - 
+                <a href="{% url 'mark_task_complete' category=task.category task_id=task.id %}" class="complete-btn">✔</a>
+            </li>
+        {% empty %}
+            <li>No {{ category }} tasks found.</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+    <h2>Add New {{ category|title }} Task</h2>
+
+    {% if category %}
+        <form method="post" action="{% url 'add_task' category=category %}">
+    {% else %}
+        <p>No category selected.</p>
+    {% endif %}
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Enter task title" required>
+        <button type="submit">Add Task</button>
+    </form>
+</body>
+</html>
